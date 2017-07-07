@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Accessiboard</string>
+    <string name="new_tab_menu">New Tab</string>
+    <string name="rename_tab_fab">Rename Tab</string>
+    <string name="delete_tab_fab">Delete Tab</string>
+    <string name="tab_name">New Tab Name</string>
+    <string name="soundclip_name">New Sound Clip Name</string>
+    <string name="dialog_ok">OK</string>
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_aight">Aight</string>
+    <string name="new_custom_sound">Add Custom Sound Clip</string>
+    <string name="invalid_path">*-invalid path-*</string>
+    <string name="title_activity_about">About</string>
+    <string name="permanent_delete">This will permanently remove the sound clip from the app. Continue?</string>
+    <string name="add_dank_sound">Add dank sound to which tab?</string>
+    <string name="dank_sound_exists">This dank sound clip is already in that favorite tab bruh!</string>
+    <string name="tab_name_in_use">Yo that name is already in use man.</string>
 </resources>

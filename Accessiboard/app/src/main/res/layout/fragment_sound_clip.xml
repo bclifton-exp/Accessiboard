@@ -1,0 +1,49 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/opaqueBlack">
+
+    <View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:background="#dadada"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+        android:id="@+id/view" />
+
+    <ImageButton
+        android:id="@+id/play_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_playbutton"
+        style="?android:attr/borderlessButtonStyle"
+        android:scaleType="fitEnd"
+        android:layout_centerVertical="true"
+        android:layout_alignParentEnd="true" />
+
+    <ImageButton
+        android:id="@+id/delete_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_trash"
+        style="?android:attr/borderlessButtonStyle"
+        android:scaleType="fitStart"
+        android:layout_gravity="start"
+        android:layout_below="@+id/view"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/sound_clip_text_view"
+        style="@style/TextAppearance.AppCompat.Large"
+        android:gravity="start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorAccent"
+        android:padding="16dp"
+        android:layout_centerVertical="true"
+        android:layout_alignBottom="@+id/delete_button"
+        android:layout_alignStart="@+id/view"
+        android:layout_marginStart="34dp" />
+
+</RelativeLayout>

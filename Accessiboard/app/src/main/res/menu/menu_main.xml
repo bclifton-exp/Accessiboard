@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="boomcity.accessiboard.MainActivity">
+    <item
+    android:id="@+id/action_new_tab"
+    android:orderInCategory="100"
+    android:title="@string/new_tab_menu"
+    app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_new_sound"
+        android:orderInCategory="100"
+        android:title="@string/new_custom_sound"
+        app:showAsAction="never" />
+
+    <!--<item-->
+        <!--android:id="@+id/about_activity"-->
+        <!--android:orderInCategory="100"-->
+        <!--android:title="@string/title_activity_about"-->
+        <!--app:showAsAction="never" />-->
+</menu>

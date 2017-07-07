@@ -1,5 +1,6 @@
 package boomcity.accessiboard
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.app.Dialog
 import android.os.Bundle
@@ -7,6 +8,7 @@ import android.app.AlertDialog
 import android.app.DialogFragment
 import android.widget.EditText
 
+@SuppressLint("ValidFragment")
 class NewSoundClipDialogFragment(activity: MainActivity) : DialogFragment() {
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {

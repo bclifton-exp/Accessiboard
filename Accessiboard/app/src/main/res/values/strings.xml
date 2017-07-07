@@ -16,4 +16,5 @@
     <string name="add_dank_sound">Add dank sound to which tab?</string>
     <string name="dank_sound_exists">This dank sound clip is already in that favorite tab bruh!</string>
     <string name="tab_name_in_use">Yo that name is already in use man.</string>
+    <string name="new_speech_clip">New Speech Clip</string>
 </resources>

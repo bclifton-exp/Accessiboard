@@ -18,12 +18,16 @@ import com.github.clans.fab.FloatingActionMenu
 import android.content.Intent
 import android.app.Activity
 import android.net.Uri
+import android.speech.tts.TextToSpeech
 import android.support.v7.widget.RecyclerView
 import com.google.gson.*
 import android.support.design.widget.AppBarLayout
+import java.util.*
 
-class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
+class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, TextToSpeech.OnInitListener {
+
     private var mSectionsPagerAdapter: SectionsPagerAdapter? = null
+    lateinit var tts: TextToSpeech
     lateinit var mViewPager: ViewPager
     lateinit var mToolBar: Toolbar
     lateinit var tabLayout: TabLayout
@@ -39,6 +43,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        tts = TextToSpeech(this, this)
         mToolBar = findViewById(R.id.toolbar) as Toolbar
         setSupportActionBar(mToolBar)
         getStoredTabData()
@@ -180,7 +185,23 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener {
             startActivityForResult(intent, READ_REQUEST_CODE)
         }
 
+        if (id == R.id.action_new_speech_clip) {
+            tts.speak("This is some text yolo", TextToSpeech.QUEUE_FLUSH, null)
+            //TODO this is it here for TTS
+            //dont forget to call shutdown on this...maybe we dont need to do that at all actually since..well its  TTS app..
+        }
+
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            val language = tts.language
+            val result = tts.setLanguage(language)
+            if (result == TextToSpeech.LANG_MISSING_DATA || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                //fuck
+            }
+        }
     }
 
     public override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {

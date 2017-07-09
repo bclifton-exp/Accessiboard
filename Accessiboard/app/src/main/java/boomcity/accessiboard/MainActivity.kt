@@ -22,7 +22,6 @@ import android.speech.tts.TextToSpeech
 import android.support.v7.widget.RecyclerView
 import com.google.gson.*
 import android.support.design.widget.AppBarLayout
-import java.util.*
 
 class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, TextToSpeech.OnInitListener {
 
@@ -81,7 +80,7 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, TextT
 
         if (tabsData == null) {
             //first startup
-            val defaultTabSounds = mutableListOf<SoundClip>(SoundClip("AirPorn",R.raw.airporn))
+            val defaultTabSounds = mutableListOf<TtsObject>(TtsObject("Default TTS Object","Some tts phrase here"))
             tabsData = TabsData(mutableListOf(TabDataInfo("All",0, defaultTabSounds),TabDataInfo("Favorites", 1, mutableListOf())))
         }
 
@@ -109,8 +108,8 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, TextT
         }
     }
 
-    fun newSoundClipName(soundClipName: String, audioUri: String) {
-        if (DataService.getTabsData().getTab(0)!!.soundClips.any { clip -> clip.Title.toLowerCase() == soundClipName.toLowerCase() }) {
+    fun newSoundClipName(ttsObjectName: String, audioUri: String) {
+        if (DataService.getTabsData().getTab(0)!!.ttsObjects.any { tts -> tts.Title.toLowerCase() == ttsObjectName.toLowerCase() }) {
             val errorBuilder = AlertDialog.Builder(this, R.style.DankAlertDialogStyle)
             errorBuilder.setTitle(R.string.tab_name_in_use)
             errorBuilder.setNegativeButton(R.string.dialog_aight, { dialog, which ->
@@ -119,13 +118,13 @@ class MainActivity : AppCompatActivity(), TabLayout.OnTabSelectedListener, TextT
             errorBuilder.show()
         }
         else {
-            val customSoundClip = SoundClip(soundClipName, System.currentTimeMillis().toInt(),audioUri)
-            DataService.addClipToFavoriteTab(customSoundClip, 0)
-            goToNewlyCreatedSoundClip()
+            val newTtsObject = TtsObject(ttsObjectName, "Default phrase text" ,System.currentTimeMillis().toInt()) //TODO set the textbox text in here
+            DataService.addTtsObjectToTab(newTtsObject, 0)
+            goToNewlyCreatedTtsObject()
         }
     }
 
-    private fun goToNewlyCreatedSoundClip() {
+    private fun goToNewlyCreatedTtsObject() {
         tabLayout.getTabAt(0)!!.select()
         val recyclerView = mViewPager.getChildAt(0).findViewById(R.id.recycler_view) as RecyclerView
         val check = recyclerView.adapter.itemCount

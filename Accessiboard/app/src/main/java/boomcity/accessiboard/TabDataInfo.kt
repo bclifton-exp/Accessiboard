@@ -1,6 +1,6 @@
 package boomcity.accessiboard
 
-class TabDataInfo (tabName: String, tabPosition: Int, var soundClips: MutableList<SoundClip> = arrayListOf()) {
+class TabDataInfo (tabName: String, tabPosition: Int, var ttsObjects: MutableList<TtsObject> = arrayListOf()) {
     var name: String = tabName
     val position: Int = tabPosition
 }

@@ -46,29 +46,29 @@ class DataService {
             viewPager.adapter.notifyDataSetChanged()
         }
 
-        fun addClipToFavoriteTab(soundClip: SoundClip, tabIndex: Int){
+        fun addTtsObjectToTab(ttsObject: TtsObject, tabIndex: Int){
             val selectedTabView = viewPager.getChildAt(tabIndex)
             val recyclerView = selectedTabView.findViewById(R.id.recycler_view) as RecyclerView
             val soundAdapter = recyclerView.adapter as SoundRecyclerAdapter
-            tabsDataObject.getTab(tabIndex)!!.soundClips.add(soundClip)
+            tabsDataObject.getTab(tabIndex)!!.ttsObjects.add(ttsObject)
             val json = gson.toJson(tabsDataObject)
             sharedPreferences.edit().putString("TabsDataInfo", json).apply()
             soundAdapter.notifyDataSetChanged()
         }
 
-        fun removeSoundClipFromTab(soundAdapter: SoundRecyclerAdapter, soundClip: SoundClip, tabIndex: Int) {
-            tabsDataObject.getTab(tabIndex)!!.soundClips.removeAll { clip ->
-                clip.AudioId == soundClip.AudioId
+        fun removeTtsObjectFromTab(soundAdapter: SoundRecyclerAdapter, ttsObject: TtsObject, tabIndex: Int) {
+            tabsDataObject.getTab(tabIndex)!!.ttsObjects.removeAll { tts ->
+                tts.TtsId == ttsObject.TtsId
             }
             val json = gson.toJson(tabsDataObject)
             sharedPreferences.edit().putString("TabsDataInfo", json).apply()
             soundAdapter.notifyDataSetChanged()
         }
 
-        fun removeSoundClipFromApp(soundClip: SoundClip) {
+        fun removeTtsObjectFromApp(ttsObject: TtsObject) {
             for (tab in tabsDataObject.tabsList!!) {
-                tab.soundClips.removeAll { clip ->
-                    clip.AudioId == soundClip.AudioId
+                tab.ttsObjects.removeAll { tts ->
+                    tts.TtsId == ttsObject.TtsId
                 }
             }
 

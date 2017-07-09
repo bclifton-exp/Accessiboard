@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.text.style.TtsSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -27,13 +28,13 @@ class TabFragment : Fragment() {
         var tabInfo = DataService.getTabsData().getTab(tabIndex)
 
         if (tabInfo != null) {
-            var myDataset = tabInfo.soundClips
+            var myDataset = tabInfo.ttsObjects
 
             mAdapter = SoundRecyclerAdapter(myDataset, tabIndex)
             mRecyclerView.setAdapter(mAdapter)
         }
         else {
-            var myDataset = mutableListOf<SoundClip>()
+            var myDataset = mutableListOf<TtsObject>()
 
             mAdapter = SoundRecyclerAdapter(myDataset, tabIndex)
             mRecyclerView.setAdapter(mAdapter)
@@ -42,9 +43,9 @@ class TabFragment : Fragment() {
         return rootView
     }
 
-    fun update(){
-        mAdapter.notifyDataSetChanged()
-    }
+//    fun update(){
+//        mAdapter.notifyDataSetChanged()
+//    }
 
     companion object {
         val ARG_SECTION_NUMBER = "tab_number"
